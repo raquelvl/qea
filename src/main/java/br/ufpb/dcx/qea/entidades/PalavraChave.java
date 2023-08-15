@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,7 +18,7 @@ public class PalavraChave {
 
 	@ManyToMany(mappedBy = "palavrasChave")
 	@JsonIgnore
-	private List<Pergunta> perguntas;
+	private List<Pergunta> perguntas = new ArrayList<>();
 
 	public PalavraChave() {
 		super();

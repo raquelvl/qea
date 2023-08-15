@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PalavraChaveDAO extends JpaRepository<PalavraChave, String> {
 	boolean existsByPalavraChave(String palavra);
+	PalavraChave findByPalavraChave(String palavra);
 }

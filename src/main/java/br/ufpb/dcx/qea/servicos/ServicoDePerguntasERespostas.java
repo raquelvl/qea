@@ -44,24 +44,24 @@ public class ServicoDePerguntasERespostas {
 
 		List<String> palavrasChave = pergunta.extraiPalavrasChave();
 		for (String palavra : palavrasChave) {
-			System.out.println("PALAVRA_CHAVE =====> " + palavra);
-			//if (!repositorioDePalavrasChave.existsById(palavra.trim())) {
+			System.out.println("PALAVRA_CHAVE =====> " + palavra.trim());
+			PalavraChave umaPalavraChave;
 			if (!repositorioDePalavrasChave.existsByPalavraChave(palavra.trim())) {
 				System.out.println("ENTROOOUUUU");
-				PalavraChave umaPalavraChave = new PalavraChave();
+				umaPalavraChave = new PalavraChave(palavra.trim());
 				umaPalavraChave.adicionaPergunta(perguntaSalva);
-				umaPalavraChave.setPalavraChave(palavra.trim());
 				repositorioDePalavrasChave.save(umaPalavraChave);
+			} else {
+				umaPalavraChave = repositorioDePalavrasChave.findByPalavraChave(palavra.trim());
+				System.out.println("PALAVRA CHAVE RECUPERADA ===> " + umaPalavraChave.getPalavraChave());
 			}
 
-			// System.out.println("=========> palavraChave recuperada = " +
-			// palavraChaveOpt.get());
-			asPalavrasChave.add(new PalavraChave(palavra.trim()));
+			asPalavrasChave.add(umaPalavraChave);
 		}
 
 		perguntaSalva.setPalavrasChave(asPalavrasChave);
-		perguntaSalva = repositorioDePerguntas.save(aPergunta);
-		return perguntaSalva;
+		Pergunta aPerguntaSalva = repositorioDePerguntas.save(perguntaSalva);
+		return aPerguntaSalva;
 	}
 
 	public Resposta adicionaResposta(long id, RespostaDTO resposta) {
