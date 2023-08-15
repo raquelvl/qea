@@ -44,16 +44,13 @@ public class ServicoDePerguntasERespostas {
 
 		List<String> palavrasChave = pergunta.extraiPalavrasChave();
 		for (String palavra : palavrasChave) {
-			System.out.println("PALAVRA_CHAVE =====> " + palavra.trim());
 			PalavraChave umaPalavraChave;
 			if (!repositorioDePalavrasChave.existsByPalavraChave(palavra.trim())) {
-				System.out.println("ENTROOOUUUU");
 				umaPalavraChave = new PalavraChave(palavra.trim());
 				umaPalavraChave.adicionaPergunta(perguntaSalva);
 				repositorioDePalavrasChave.save(umaPalavraChave);
 			} else {
 				umaPalavraChave = repositorioDePalavrasChave.findByPalavraChave(palavra.trim());
-				System.out.println("PALAVRA CHAVE RECUPERADA ===> " + umaPalavraChave.getPalavraChave());
 			}
 
 			asPalavrasChave.add(umaPalavraChave);
@@ -79,7 +76,6 @@ public class ServicoDePerguntasERespostas {
 			return repositorioDePerguntas.findAll();
 
 		Optional<PalavraChave> aPalavraChave = repositorioDePalavrasChave.findById(palavraChave);
-		System.out.println("=========> palavraChave recuperada = " + aPalavraChave.get());
 		if (aPalavraChave.isPresent()) {
 			return aPalavraChave.get().getPerguntas();
 		}

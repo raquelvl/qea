@@ -2,7 +2,6 @@ package br.ufpb.dcx.qea.entidades;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import org.springframework.beans.factory.annotation.Autowired;
 
 
 import java.util.ArrayList;
